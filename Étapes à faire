@@ -1,0 +1,53 @@
+Étapes à faire:
+    1/ Classe Order
+    ==> modifier la fonction qui permet de récupérer toutes les commandes getAllOrders en utilisant la jointure
+
+    2/ Création des vues
+        /
+            page d'accueil
+            page de la liste des produits
+            page qui permet d'afficher les détails d'un seul produit
+            page du panier
+            page de validation de la commande et paiement
+        /user
+            login
+            register
+            profile
+            historique des commandes
+        /admin
+            page pour lister les produits
+            page pour ajouter un produit
+            page pour ajouter un administrateur
+            page pour afficher la liste des utilisateurs (clients)
+            page permet d'afficher la liste de toutes les commandes
+            page qui permet d'afficher les détails d'une seule commande
+
+    3/ Création des fonctions dans les controlleurs qui correspondent au vues
+        --DefaultController 
+        3.1.1/ Créer la fonction qui permet d'afficher la page d'accueil --- 
+        --ProductController
+        3.2.1/ Créer la fonction qui permet d'afficher la liste des produits --- 
+        3.2.2/ Créer la fonction qui permet d'afficher un seul article --- 
+        3.2.3/ Créer la fonction qui permet d'afficher la liste des produits qui sont dans le panier 
+            (Les produits qui sont ajoutés dans le panier sont stockés dans la session => $_SESSION)
+        --UserController
+        3.3.1/ la fonction login ----
+        3.3.2/ la fonction register --- 
+        3.3.3/ la fonction qui affiche le profile --- 
+        3.3.4/ la fonction qui permet d'afficher l'historique de la liste des commandes du client actuel qui est connecté
+        3.3.5/ valider la commande et payer
+        --AdminController
+        3.4.1/ fonction qui permet de lister tous les produits ---
+        3.4.2/ ajouter un produit
+        3.4.3/ afficher la liste des utilisateurs
+        3.4.4/ ajouter un administrateur
+        3.4.5/ afficher la liste des commandes
+        3.4.6/ changer le status de la commande en livré (modifier submitted_at)
+        3.4.7/ afficher les détails d'une seule commande
+
+Note:
+    * Aujourd'hui on doit finir les fonctions dans les controlleurs
+    * Demain matin on fera le panier en JavaScript
+    --> On doit finir cet exercice demain avant 13h
+    * Demain l'après-midi ça sera pour une initiation à la base de données NoSQL MongoDB
+    * Après demain (Jeudi) on changera toute la base des données du même projet en NoSQL
