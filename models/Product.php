@@ -201,7 +201,7 @@ class Product implements MongoDB\BSON\Serializable, MongoDB\BSON\Unserializable
     //         );
     // }
 
-    // RÉCUPÉRER UN SEUL PRODUIT (MONGO DB)
+    // RÉCUPÉRER UN SEUL PRODUIT (MONGO DB) (OK)
     public static function getProductById($id)
     {
         $cnx = new Connexion();
@@ -226,7 +226,7 @@ class Product implements MongoDB\BSON\Serializable, MongoDB\BSON\Unserializable
         return $productObject;
     }
 
-    // RECUPERER TOUS LES PRODUITS (MONGO DB)
+    // RECUPERER TOUS LES PRODUITS (MONGO DB) (OK)
     public static function getAllProducts()
     {
         $cnx = new Connexion();

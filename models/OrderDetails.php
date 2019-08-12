@@ -1,17 +1,35 @@
 <?php
 
 
-class OrderDetails
+class OrderDetails implements MongoDB\BSON\Serializable, MongoDB\BSON\Unserializable
 {
     // proprietés
-    private $id;
+    private $_id;
     private $quantity_ordered;
     private $price_each;
     private $total_price;
-    private $order_id;
+    // private $order_id;
     private $product_id;
 
-    
+    // RAPPEL : SERIALISER C'EST TRANSFORMER UN OBJET EN JSON (A CORRIGER)
+    public function bsonSerialize()
+    {
+        return [
+            'quantity_ordered' => $this->quantity_ordered,
+            'price_each' => (float) $this->price_each,
+            'total_price' => (float) $this->total_price,
+            'product_id' => (int) $this->product_id,
+        ];
+    }
+
+    // (MONGODB)
+    // RAPPEL : DÉSERIALISER C'EST PASSER DE JSON EN OBJET (A CORRIGER)
+    public function bsonUnserialize(array $map)
+    {
+        foreach ($map as $key => $value) {
+            $this->$key = $value;
+        }
+    }
 
     // getter et setter
 
@@ -21,7 +39,7 @@ class OrderDetails
      */ 
     public function getId()
     {
-        return $this->id;
+        return $this->_id;
     }
 
     /**

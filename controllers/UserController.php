@@ -11,6 +11,7 @@ class UserController extends Controller
         require "views/user/index.php";
     }
 
+    // Route: /index.php/login
     public function login()
     {
         
@@ -105,6 +106,9 @@ class UserController extends Controller
     public function validateorder()
     {
         $this->isConnected();
+        // je decompose la commande stocké dans le panier donc dans le cookie
+        // et je décompose l'ensemble des produits qui sont séparés par un pipe |
+        // en un seul produit
         $orders_in_cookie = explode("|", $_COOKIE['cart']);
         $total=0;
         foreach($orders_in_cookie as $o)
@@ -117,9 +121,12 @@ class UserController extends Controller
         $order->setTotal_ttc($total * 1.2);
         $session = new Session();
         $order->setUser_id($session->getLoggedUserId());
+        // on insere la commande et on recupere l'id de la commande
         $order_id = $order->save();
+        // on crée les orderDetails
         foreach($orders_in_cookie as $o)
         {
+            // Je décompose chaque produits qui sont séparés par une virgule
             $details = explode(",", $o);
             $order_details = new OrderDetails();
             $order_details->setQuantity_ordered($details[3]);

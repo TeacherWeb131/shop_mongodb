@@ -30,9 +30,9 @@ class Connexion
         return $result;
     }
 
-    public function findAll($collection)
+    public function findAll($collection, $query = [])
     {
-        $result = $this->db->$collection->find();
+        $result = $this->db->$collection->find($query);
         return $result->toArray();
     }
 

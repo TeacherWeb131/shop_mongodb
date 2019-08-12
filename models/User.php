@@ -10,12 +10,14 @@ class User implements MongoDB\BSON\Serializable, MongoDB\BSON\Unserializable
     private $first_name;
     private $last_name;
     private $email;
-    private $created_at;
+    // private $created_at;
     private $password;
     private $admin;
 
     // (MONGODB)
     // ON SERIALISE LES PROPRIÉTÉS (MONGODB)
+    // DANS CETTE FONCTION ON N'A PAS BESOIN DE METTRE L'ID CAR IL SERA GÉNÉRÉ PAR LA BDD
+    // CETTE METHODE EST UTILISÉE IMPLICITEMENT DANS L'INSERTION DANS LA BDD
     public function bsonSerialize()
     {
         return [
@@ -129,17 +131,6 @@ class User implements MongoDB\BSON\Serializable, MongoDB\BSON\Unserializable
         return $this->created_at;
     }
 
-    /**
-     * Set the value of created_at
-     *
-     * @return  self
-     */ 
-    public function setCreated_at($created_at)
-    {
-        $this->created_at = $created_at;
-
-        return $this;
-    }
 
 
 
@@ -214,7 +205,7 @@ class User implements MongoDB\BSON\Serializable, MongoDB\BSON\Unserializable
         $cnx->addToDb("user", $this);
     }
 
-    // FONCTION DE RÉCUPERATION POUR MONGODB (A CORRIGER)
+    // FONCTION DE RÉCUPERATION POUR MONGODB (OK)
     public static function getUserByEmail($email)
     {
         $cnx = new Connexion();
@@ -249,6 +240,7 @@ class User implements MongoDB\BSON\Serializable, MongoDB\BSON\Unserializable
         // LE PREMIER : L'OBJET BSON TRANSFORMÉ EN STRING
         // LE DEUXIÈME : LA CLASSE CORRESPONDANT À L'OBJET COURANT (ICI 'User')
         // ET CA NOUS RETOURNE UN OBJET PHP
+        // 'root' 
         $userObject = MongoDB\BSON\toPHP($userString, ['root' => 'User']);
         // dd($userObject);
 
